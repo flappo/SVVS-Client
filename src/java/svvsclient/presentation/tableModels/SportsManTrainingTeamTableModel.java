@@ -1,0 +1,96 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package svvsclient.presentation.tableModels;
+
+import data.DTOs.ISportsmanTrainingTeamDTO;
+import java.rmi.RemoteException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author Michael
+ */
+public class SportsManTrainingTeamTableModel extends DefaultTableModel {
+
+    private List<ISportsmanTrainingTeamDTO> sportsmen;
+    private String[] colNames = {"Nachname", "Vorname", "Position"};
+
+    public SportsManTrainingTeamTableModel(List<ISportsmanTrainingTeamDTO> sportsmen) {
+        this.sportsmen = sportsmen;
+    }
+
+    @Override
+    public int getRowCount() {
+        return (sportsmen == null) ? 0 : sportsmen.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return colNames.length;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        try {
+            ISportsmanTrainingTeamDTO sportsman = sportsmen.get(rowIndex);
+
+            switch(columnIndex) {
+                case 0:
+                    return sportsman.getSportsman().getPerson().getLastname();
+                case 1:
+                    return sportsman.getSportsman().getPerson().getFirstname();
+                case 2:
+                    return sportsman.getPosition();
+                default:
+                    return null;
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(SportsManTrainingTeamTableModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public List<ISportsmanTrainingTeamDTO> getSportsmen() {
+        return sportsmen;
+    }
+
+    public void setSportsmen(List<ISportsmanTrainingTeamDTO> sportsmen) {
+        this.sportsmen = sportsmen;
+    }
+
+    public void addSportsman(ISportsmanTrainingTeamDTO sportsman) {
+        this.sportsmen.add(sportsman);
+    }
+    
+    public void removeSportsman(ISportsmanTrainingTeamDTO sportsman) {
+        this.sportsmen.remove(sportsman);
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        return (colNames[column]);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return false;
+    }
+
+    public ISportsmanTrainingTeamDTO getSportsmanDTO(int index) {
+        return sportsmen.get(index);
+    }
+
+    public void updateSportsmanDTO(int index, ISportsmanTrainingTeamDTO sportsman) {
+        sportsmen.set(index, sportsman);
+    }
+
+    @Override
+    public void fireTableDataChanged() {
+        super.fireTableDataChanged();
+    }
+}

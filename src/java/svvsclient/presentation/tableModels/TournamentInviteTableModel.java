@@ -1,0 +1,87 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package svvsclient.presentation.tableModels;
+
+import data.DTOs.ITournamentInviteDTO;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author Michael
+ */
+public class TournamentInviteTableModel extends DefaultTableModel {
+
+    private List<ITournamentInviteDTO> tournamentTeams;
+    private String[] colNames = {"Name", "Wettkampf", "Sportart"};
+
+    public TournamentInviteTableModel(List<ITournamentInviteDTO> tournamentTeams) {
+        this.tournamentTeams = tournamentTeams;
+    }
+
+    @Override
+    public int getRowCount() {
+        return (tournamentTeams == null) ? 0 : tournamentTeams.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return colNames.length;
+    }
+
+    @Override
+    public Object getValueAt(int row, int column) {
+        try {
+            ITournamentInviteDTO tournamentTeam = tournamentTeams.get(row);
+
+            switch (column) {
+                case 0:
+                    return tournamentTeam.getTeam().getName();
+                case 1:
+                    return tournamentTeam.getTournament().getName();
+                case 2:
+                    return tournamentTeam.getTeam().getSport().getName();
+                default:
+                    return null;
+            }
+        } catch (Exception e) {
+            Logger.getLogger(SportsManTrainingTeamTableModel.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+
+    }
+
+    public List<ITournamentInviteDTO> getTournamentTeams() {
+        return tournamentTeams;
+    }
+
+    public void setTournamentTeams(List<ITournamentInviteDTO> tournamentTeams) {
+        this.tournamentTeams = tournamentTeams;
+    }
+
+    public void addTournamentTeam(ITournamentInviteDTO tournamentTeam) {
+        this.tournamentTeams.add(tournamentTeam);
+    }
+
+    public void updateTournamentTeamDTO(int index, ITournamentInviteDTO tournamentTeam) {
+        this.tournamentTeams.set(index, tournamentTeam);
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        return colNames[column];
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return false;
+    }
+
+    public ITournamentInviteDTO getTournamentTeamDTO(int index) {
+        return tournamentTeams.get(index);
+    }
+}

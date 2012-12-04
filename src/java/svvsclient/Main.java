@@ -59,7 +59,7 @@ public class Main {
         System.out.println(_cFactory.isOk());
         System.out.println(_cFactory2.isOk());
         System.out.println(_cFactory3.isOk());
-
+        
         CountryControllerRemote cc = _cFactory.getCountryController();
         List<ICountryDTO> countrylist = cc.getCountries();
         for (ICountryDTO icdto : countrylist) {
