@@ -105,9 +105,12 @@ public class MainForm extends javax.swing.JFrame {
         }
     }
     
-    public MainForm(String user) {
+    public MainForm(String user, ControllerFactoryRemote c1, ControllerFactory2Remote c2, ControllerFactory3Remote c3) {
         initComponents();
         this.user = user;
+        _cFactory1 = c1;
+        _cFactory2 = c2;
+        _cFactory3 = c3;
         try {
             loadControllers();
             loggedUser = personController.loadPersonWithUsername(user);

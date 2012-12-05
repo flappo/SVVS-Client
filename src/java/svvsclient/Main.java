@@ -34,6 +34,7 @@ import data.DTOs.ISportDTO;
 import data.DTOs.ITeamDTO;
 import data.DTOs.ITournamentDTO;
 import data.DTOs.ITournamentInviteDTO;
+import data.DTOs.ITrainingTeamDTO;
 import java.rmi.RemoteException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -43,6 +44,7 @@ import javax.ejb.EJB;
  * @author phil
  */
 public class Main {
+
     @EJB(name = "_cFactory3")
     private static ControllerFactory3Remote _cFactory3;
     @EJB(name = "_cFactory2")
@@ -59,33 +61,56 @@ public class Main {
         System.out.println(_cFactory.isOk());
         System.out.println(_cFactory2.isOk());
         System.out.println(_cFactory3.isOk());
+
+        ITeamController itc = _cFactory2.getTeamController();
+        List<ITeamDTO> teamlist = itc.loadTeams();
+        for (ITeamDTO iTeamDTO : teamlist) {
+            System.out.println(iTeamDTO.getName() + "\n");
+        }
         
+        List<ITrainingTeamDTO> TrainingTeamDTOList = itc.loadTrainingTeamsWithSport("Fußball");
+
+
+        ISportController isc = _cFactory.getSportController();
+        List<ISportDTO> sportlist = isc.getAllSports();
+        for (ISportDTO iSportDTO : sportlist) {
+            System.out.println(iSportDTO.getName() + "\n");
+        }
+
+        IPlayerToTeam iptt = _cFactory2.getPlayerToTeam();
+        System.out.println(sportlist.get(0).getName());
+        List<ITrainingTeamDTO> teamDTOList = iptt.loadTeams(sportlist.get(0).getName());
+        for (ITrainingTeamDTO iTrainingTeamDTO : teamDTOList) {
+            System.out.println(iTrainingTeamDTO.getName() + "\n");
+        }
+
+
         CountryControllerRemote cc = _cFactory.getCountryController();
         List<ICountryDTO> countrylist = cc.getCountries();
         for (ICountryDTO icdto : countrylist) {
             System.out.println(icdto.getName() + "\n");
         }
-        
+
         IEditPersonRole iepr = _cFactory3.getEditPersonRole();
         List<IRoleRightsDTO> iepRightsDTOs = iepr.loadRoleRights();
         for (IRoleRightsDTO iRoleRightsDTO : iepRightsDTOs) {
             System.out.println(iRoleRightsDTO.getName() + "\n");
         }
-        
+
         IRoleController irc = _cFactory3.getRoleController();
         List<IRoleRightsDTO> irrrrr = irc.loadRoleRights();
         for (IRoleRightsDTO iRoleRightsDTO : irrrrr) {
-             System.out.println(iRoleRightsDTO.getName() + "\n");
+            System.out.println(iRoleRightsDTO.getName() + "\n");
         }
-        
+
         ITournamentController itcontroller = _cFactory3.getTournamentController();
         List<ITournamentDTO> tourlist = itcontroller.loadTournaments();
         for (ITournamentDTO iTournamentDTO : tourlist) {
             System.out.println(iTournamentDTO.getName() + "\n");
         }
-        
+
         ITournamentEdit ite = _cFactory3.getTournamentEdit();
-        
+
         ITournamentCreation iTournamentCreation = _cFactory3.getTournamentCreation();
 
         ITournamentTeamController ittc = _cFactory2.getTournamentTeamController();
@@ -94,15 +119,9 @@ public class Main {
             System.out.println(icdto.getTournament().getName() + "\n");
         }
 
-        ITeamController itc = _cFactory2.getTeamController();
-        List<ITeamDTO> teamlist = itc.loadTeams();
-        for (ITeamDTO iTeamDTO : teamlist) {
-            System.out.println(iTeamDTO.getName() + "\n");
-        }
-        
+
+
         ITeamToPlayer ittt = _cFactory2.getTeamToPlayer();
-        
-        IPlayerToTeam iptt = _cFactory2.getPlayerToTeam();
 
         IPersonCreation ipcreation = _cFactory.getPersonCreation();
         List<ICountryDTO> personcreatcountrylist = ipcreation.loadCountries();
@@ -127,11 +146,7 @@ public class Main {
 
 
 
-        ISportController isc = _cFactory.getSportController();
-        List<ISportDTO> sportlist = isc.getAllSports();
-        for (ISportDTO iSportDTO : sportlist) {
-            System.out.println(iSportDTO.getName() + "\n");
-        }
+
 
         IDepartmentController idc = _cFactory.getDepartmentController();
         List<IDepartmentDTO> deplist = idc.loadDepartments();

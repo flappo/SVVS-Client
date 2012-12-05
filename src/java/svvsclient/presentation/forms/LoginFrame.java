@@ -4,6 +4,8 @@
  */
 package svvsclient.presentation.forms;
 
+import business.ControllerFactory2Remote;
+import business.ControllerFactory3Remote;
 import business.ControllerFactoryRemote;
 import business.controller.person.IAuthentificationController;
 import javax.ejb.EJB;
@@ -13,9 +15,14 @@ import javax.ejb.EJB;
  * @author Evgeniya Spiegel
  */
 public class LoginFrame extends javax.swing.JFrame {
+    @EJB(name = "_cFactory3")
+    private static ControllerFactory3Remote _cFactory3;
+    @EJB(name = "_cFactory2")
+    private static ControllerFactory2Remote _cFactory2;
     @EJB(name = "_cFactory")
     private static ControllerFactoryRemote _cFactory;
 
+    
     /**
      * Creates new form LoginFrame
      */
@@ -224,7 +231,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void openMainForm(String userid) {
         System.out.println("OpenMainForm, userid=" + userid);
-        MainForm mainForm = new MainForm(userid);
+        MainForm mainForm = new MainForm(userid, _cFactory, _cFactory2, _cFactory3);
         mainForm.setVisible(true);
 
     }
