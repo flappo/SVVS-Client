@@ -676,7 +676,7 @@ public class MainForm extends javax.swing.JFrame {
                 LinkedList<ISportsmanDTO> list;
                 list = new LinkedList<ISportsmanDTO>();
                 
-                LinkedList<ISportsmanDTO> team = _cFactory2.getPlayerToTeam().loadSportsman(sportsname, list);//controllerFactory.loadPlayerToTeamController().loadSportsman(sportsname, list);
+                LinkedList<ISportsmanDTO> team = _cFactory2.getPlayerToTeam().loadSportsman(sportsname/*, list*/);//controllerFactory.loadPlayerToTeamController().loadSportsman(sportsname, list);
                 _person.removeAllItems();
                 for (ISportsmanDTO is : team) {
                     _person.addItem(is);

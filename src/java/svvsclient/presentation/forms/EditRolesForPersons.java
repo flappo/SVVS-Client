@@ -34,7 +34,7 @@ public class EditRolesForPersons extends javax.swing.JFrame {
      */
     public EditRolesForPersons(IPersonDTO person, IRoleController roles, IEditPersonRole personrole) throws RemoteException {
         initComponents();
-        
+
         this.setLocationRelativeTo(null);
         this.setTitle("Rolleneditor");
         this.person = person;
@@ -219,20 +219,20 @@ public class EditRolesForPersons extends javax.swing.JFrame {
 
     private void hinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hinzufuegenActionPerformed
         try {
-            LinkedList<IRoleRightsDTO> list = new LinkedList<IRoleRightsDTO>();
+            List<IRoleRightsDTO> list = new LinkedList<IRoleRightsDTO>();
 
             list.add((IRoleRightsDTO) lbRolle.getSelectedItem());
-
+            IRoleRightsDTO right = (IRoleRightsDTO) lbRolle.getSelectedItem();
 
             if (!lbAbteilung.isEnabled()) //nur rolle gewählt
             {
-                roles.EditPersonRole(person, list, null, null);
+                roles.EditPersonRole(person,right /*list*/, null, null);
             } else if (!lbSportart.isEnabled()) //rolle + abteilung
             {
-                roles.EditPersonRole(person, list, (IDepartmentDTO) lbAbteilung.getSelectedItem(), null);
+                roles.EditPersonRole(person, right/*list*/, (IDepartmentDTO) lbAbteilung.getSelectedItem(), null);
             } else //alles
             {
-                roles.EditPersonRole(person, list, (IDepartmentDTO) lbAbteilung.getSelectedItem(), (ISportDTO) lbSportart.getSelectedItem());
+                roles.EditPersonRole(person, /*list*/right, (IDepartmentDTO) lbAbteilung.getSelectedItem(), (ISportDTO) lbSportart.getSelectedItem());
             }
             List<IRoleDTO> a = roles.loadRolesOfPerson(person);
             model = new RoleTableModel(a);

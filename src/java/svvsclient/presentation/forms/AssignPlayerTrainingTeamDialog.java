@@ -184,7 +184,11 @@ public class AssignPlayerTrainingTeamDialog extends javax.swing.JDialog {
         sportsmanTable.setModel(tableModel);
         
         List<ISportsmanDTO> remainingSportsman = assignController.loadSportsman(
-                trainingTeam.getSport().getName(), ignoreList);
+                trainingTeam.getSport().getName()/*, ignoreList*/);
+        
+         for (ISportsmanDTO dto : ignoreList) {
+            remainingSportsman.remove(dto);
+        }
         
         for(ISportsmanDTO s : remainingSportsman) {
             cobSportsman.addItem(s);
