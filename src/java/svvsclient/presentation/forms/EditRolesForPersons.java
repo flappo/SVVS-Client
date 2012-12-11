@@ -11,7 +11,6 @@ import data.DTOs.IPersonDTO;
 import data.DTOs.IRoleDTO;
 import data.DTOs.IRoleRightsDTO;
 import data.DTOs.ISportDTO;
-import data.models.RoleRights;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class EditRolesForPersons extends javax.swing.JFrame {
      */
     public EditRolesForPersons(IPersonDTO person, IRoleController roles, IEditPersonRole personrole) throws RemoteException {
         initComponents();
-        
+
         lbRolle.setRenderer(new DTORenderer());
         lbAbteilung.setRenderer(new DTORenderer());
         lbSportart.setRenderer(new DTORenderer());
@@ -50,20 +49,23 @@ public class EditRolesForPersons extends javax.swing.JFrame {
         this.roles = roles;
 
         try {
-            for (IDepartmentDTO dept : personrole.loadDepartments()) {
-                lbAbteilung.addItem(dept);
-            }
+
             List<IRoleRightsDTO> asdf = roles.loadRoleRights();
             System.out.println(asdf.size());
-            
+
             for (IRoleRightsDTO role : roles.loadRoleRights()) {
                 lbRolle.addItem(role);
             }
+
+            List<IDepartmentDTO> depts = personrole.loadDepartments();
+            for (IDepartmentDTO dept : personrole.loadDepartments()) {
+                lbAbteilung.addItem(dept);
+            }
+
             List<IRoleDTO> a = roles.loadRolesOfPerson(person);
             for (IRoleDTO b : a) {
             }
-            lbRolle.removeItemAt(0);
-            lbAbteilung.removeItemAt(0);
+
             model = new RoleTableModel(a);
             table.setModel(model);
         } catch (Exception e) {
@@ -226,13 +228,13 @@ public class EditRolesForPersons extends javax.swing.JFrame {
 
             if (!lbAbteilung.isEnabled()) //nur rolle gewählt
             {
-                roles.EditPersonRole(person,right /*list*/, null, null);
+                roles.EditPersonRole(person, right /*list*/, null, null);
             } else if (!lbSportart.isEnabled()) //rolle + abteilung
             {
                 roles.EditPersonRole(person, right/*list*/, (IDepartmentDTO) lbAbteilung.getSelectedItem(), null);
             } else //alles
             {
-                roles.EditPersonRole(person, /*list*/right, (IDepartmentDTO) lbAbteilung.getSelectedItem(), (ISportDTO) lbSportart.getSelectedItem());
+                roles.EditPersonRole(person, /*list*/ right, (IDepartmentDTO) lbAbteilung.getSelectedItem(), (ISportDTO) lbSportart.getSelectedItem());
             }
             List<IRoleDTO> a = roles.loadRolesOfPerson(person);
             model = new RoleTableModel(a);
