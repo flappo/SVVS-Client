@@ -5,14 +5,19 @@
 package svvsclient.presentation.forms;
 
 import business.controller.tournament.edit.ITournamentEdit;
+import data.DTOs.IDTO;
 import data.DTOs.IMatchDTO;
 import data.DTOs.ITeamDTO;
 import data.DTOs.ITournamentDTO;
+import java.awt.Component;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 import svvsclient.presentation.matchListeners.CreateNewMatchDialogListener;
 import svvsclient.presentation.matchListeners.EditMatchDialogListener;
+import svvsclient.presentation.tableModels.DTORenderer;
 
 /**
  *
@@ -267,10 +272,14 @@ public class CreateMatchDialog extends javax.swing.JDialog {
     
     private void initControls() throws RemoteException {
         
+        cobTeam1.setRenderer(new DTORenderer());
+        cobTeam2.setRenderer(new DTORenderer());
+        
         if (tournament != null && editController != null) {
-            
+           
             for (ITeamDTO t : tournament.getTeams()) {
                 cobTeam1.addItem(t);
+                
                 cobTeam2.addItem(t);
             }
             

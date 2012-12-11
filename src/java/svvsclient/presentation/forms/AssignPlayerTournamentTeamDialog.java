@@ -9,6 +9,7 @@ import data.DTOs.ISportsmanDTO;
 import data.DTOs.ITournamentInviteDTO;
 import java.rmi.RemoteException;
 import java.util.List;
+import svvsclient.presentation.tableModels.DTORenderer;
 import svvsclient.presentation.tableModels.SportsManTableModel;
 import svvsclient.presentation.tournamentTeamListener.AssignTournamentTeamPlayerListener;
 import svvsclient.presentation.tournamentTeamListener.DeleteTournamentTeamPlayerListener;
@@ -164,6 +165,8 @@ public class AssignPlayerTournamentTeamDialog extends javax.swing.JDialog {
         
         SportsManTableModel model = new SportsManTableModel(assignedSportsman);
         sportsmanTable.setModel(model);
+        
+        cobSportsman.setRenderer(new DTORenderer());
         
         List<ISportsmanDTO> notAssignedSportsman = assignController.loadNotAssignedPlayersOfTeam(tournamentTeam.getTournament(), tournamentTeam.getTeam());
         for(ISportsmanDTO s : notAssignedSportsman) {

@@ -16,6 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import svvsclient.presentation.tableModels.DTORenderer;
 import svvsclient.presentation.tableModels.RoleTableModel;
 
 /**
@@ -34,7 +35,9 @@ public class EditRolesForPersons extends javax.swing.JFrame {
      */
     public EditRolesForPersons(IPersonDTO person, IRoleController roles, IEditPersonRole personrole) throws RemoteException {
         initComponents();
-
+        lbRolle.setRenderer(new DTORenderer());
+        lbAbteilung.setRenderer(new DTORenderer());
+        lbSportart.setRenderer(new DTORenderer());
         this.setLocationRelativeTo(null);
         this.setTitle("Rolleneditor");
         this.person = person;
@@ -113,28 +116,19 @@ public class EditRolesForPersons extends javax.swing.JFrame {
         table.setRowHeight(26);
         jScrollPane2.setViewportView(table);
 
-        hinzufuegen.setText("HinzufÃ¼gen");
+        hinzufuegen.setText("Hinzufügen");
         hinzufuegen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hinzufuegenActionPerformed(evt);
             }
         });
 
-        lbSportart.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "pony hunter" }));
-        lbSportart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lbSportartActionPerformed(evt);
-            }
-        });
-
-        lbRolle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "we are" }));
         lbRolle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lbRolleActionPerformed(evt);
             }
         });
 
-        lbAbteilung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "the golden" }));
         lbAbteilung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lbAbteilungActionPerformed(evt);
@@ -241,10 +235,6 @@ public class EditRolesForPersons extends javax.swing.JFrame {
             Logger.getLogger(EditRolesForPersons.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_hinzufuegenActionPerformed
-
-    private void lbSportartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbSportartActionPerformed
-        //TODO
-    }//GEN-LAST:event_lbSportartActionPerformed
 
     private void lbAbteilungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbAbteilungActionPerformed
         try {

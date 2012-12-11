@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import svvsclient.presentation.matchListeners.CreateNewMatchListener;
 import svvsclient.presentation.matchListeners.EditMatchListener;
+import svvsclient.presentation.tableModels.DTORenderer;
 import svvsclient.presentation.tableModels.MatchTableModel;
 import svvsclient.presentation.tournamentListeners.EditTournamentDialogListener;
 
@@ -32,6 +33,7 @@ public class EditTournamentDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
+        cobSport.setRenderer(new DTORenderer());
         this.tournament = tournament;
         this.editController = edit;
         
@@ -263,6 +265,8 @@ public class EditTournamentDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void initiateControls() throws RemoteException {
+        
+        lbxTeams.setCellRenderer(new DTORenderer());
         
         if(tournament != null) {
             tbxName.setText(tournament.getName());

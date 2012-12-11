@@ -65,7 +65,7 @@ public class PersonTableModel extends DefaultTableModel {
                     }
                     return departments;
                 case 6:
-                    return person.getMainAddress().toString();
+                    return person.getMainAddress().getValues();
                 case 7:
                     return person.getId();
                 case 8:

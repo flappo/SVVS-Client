@@ -53,6 +53,7 @@ import svvsclient.presentation.messageListener.RefuseListener;
 import svvsclient.presentation.personListeners.CreateNewPersonListener;
 import svvsclient.presentation.personListeners.EditPersonListener;
 import svvsclient.presentation.personListeners.EditRolesListener;
+import svvsclient.presentation.tableModels.DTORenderer;
 import svvsclient.presentation.tableModels.MessageTableModel;
 import svvsclient.presentation.tableModels.PersonTableModel;
 import svvsclient.presentation.tableModels.TournamentInviteTableModel;
@@ -283,7 +284,7 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(btnCreatePerson)
                     .addComponent(btnEditPerson)
                     .addComponent(btRechte))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         cobContribution.getAccessibleContext().setAccessibleName("");
@@ -338,10 +339,10 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(btnCreateTournament)
                     .addComponent(btnEditTournament)
                     .addComponent(jButton1))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        tpMain.addTab("WettkÃ¤mpfe", jPanel2);
+        tpMain.addTab("Wettkämpfe", jPanel2);
 
         trainingTeamTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -379,7 +380,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditTeam)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         tpMain.addTab("Teams", jPanel3);
@@ -420,7 +421,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditTournamentTeam)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tpMain.addTab("Wettkampf Teams", jPanel4);
@@ -466,7 +467,7 @@ public class MainForm extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRefresh)
@@ -477,21 +478,17 @@ public class MainForm extends javax.swing.JFrame {
 
         tpMain.addTab("Inbox", jPanel5);
 
-        _sportart.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         _sportart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 _sportartActionPerformed(evt);
             }
         });
 
-        _person.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         _person.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 _personActionPerformed(evt);
             }
         });
-
-        _team.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         _teams.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -500,7 +497,7 @@ public class MainForm extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(_teams);
 
-        jButton2.setText("HinzufÃ¼gen");
+        jButton2.setText("Hinzufügen");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -571,7 +568,7 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(_position, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
                     .addComponent(jLabel8))
-                .addContainerGap(450, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
 
         jLabel5.getAccessibleContext().setAccessibleName("l");
@@ -591,8 +588,7 @@ public class MainForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tpMain)
-                .addContainerGap())
+                .addComponent(tpMain, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE))
         );
 
         pack();
@@ -736,6 +732,9 @@ public class MainForm extends javax.swing.JFrame {
         _person.removeAllItems();
         _team.removeAllItems();
         
+        _person.setRenderer(new DTORenderer());
+        _sportart.setRenderer(new DTORenderer());
+//        _team.setRenderer(new DTORenderer());
         
         for (ISportDTO sports : _cFactory1.getPersonController().loadSports()/*controllerFactory.loadPersonController().loadSports()*/) {
             _sportart.addItem(sports);

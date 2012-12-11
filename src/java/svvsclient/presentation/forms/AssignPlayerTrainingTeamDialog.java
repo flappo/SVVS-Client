@@ -11,6 +11,7 @@ import data.DTOs.ITrainingTeamDTO;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.util.List;
+import svvsclient.presentation.tableModels.DTORenderer;
 import svvsclient.presentation.tableModels.SportsManTrainingTeamTableModel;
 import svvsclient.presentation.trainingTeamListener.AssignPlayerListener;
 import svvsclient.presentation.trainingTeamListener.DeletePlayerListener;
@@ -175,6 +176,8 @@ public class AssignPlayerTrainingTeamDialog extends javax.swing.JDialog {
         
         List<ISportsmanTrainingTeamDTO> sportsman = trainingTeam.getSportsmen();
         List<ISportsmanDTO> ignoreList = new LinkedList<ISportsmanDTO>();
+        
+        cobSportsman.setRenderer(new DTORenderer());
         
         for(ISportsmanTrainingTeamDTO stt : sportsman) {
             ignoreList.add(stt.getSportsman());

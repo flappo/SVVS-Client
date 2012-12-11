@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
+import svvsclient.presentation.tableModels.DTORenderer;
 import svvsclient.presentation.tournamentListeners.CreateTournamentDialogListener;
 
 
@@ -275,6 +276,10 @@ public class CreateTournamentDialog extends javax.swing.JDialog {
 
     private void initiateControls() {
 
+        cobLeague.setRenderer(new DTORenderer());
+        cobSport.setRenderer(new DTORenderer());
+        lbxTeams.setCellRenderer(new DTORenderer());
+        
         try {
             
             List<ISportDTO> sports;

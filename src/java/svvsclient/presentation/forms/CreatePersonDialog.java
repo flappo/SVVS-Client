@@ -16,6 +16,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import svvsclient.presentation.personListeners.SaveEditPersonListener;
 import svvsclient.presentation.personListeners.SavePersonListener;
+import svvsclient.presentation.tableModels.DTORenderer;
 
 
 /**
@@ -116,7 +117,7 @@ public class CreatePersonDialog extends javax.swing.JDialog {
         rdbFemale.setText("Weiblich");
 
         buttonGroup1.add(rdbMale);
-        rdbMale.setText("M√§nnlich");
+        rdbMale.setText("M‰nnlich");
 
         jLabel4.setText("Geburtsdatum");
 
@@ -209,7 +210,7 @@ public class CreatePersonDialog extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Kontakt Informationen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
-        jLabel6.setText("Stra√üe / Hausnr.");
+        jLabel6.setText("Straﬂe / Hausnr.");
 
         jLabel7.setText("PLZ");
 
@@ -283,11 +284,6 @@ public class CreatePersonDialog extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sportarten", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
-        lbxSports.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(lbxSports);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -346,7 +342,7 @@ public class CreatePersonDialog extends javax.swing.JDialog {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancel)
                     .addComponent(btnSave))
                 .addGap(21, 21, 21))
@@ -366,6 +362,10 @@ public class CreatePersonDialog extends javax.swing.JDialog {
 
     private void initiateFields() throws RemoteException {
 
+        cobContribution.setRenderer(new DTORenderer());
+        cobCountry.setRenderer(new DTORenderer());
+        lbxSports.setCellRenderer(new DTORenderer());
+        
         if (personCreation != null) {
             List<ICountryDTO> countries = personCreation.loadCountries();
             for (ICountryDTO c : countries) {
@@ -378,7 +378,7 @@ public class CreatePersonDialog extends javax.swing.JDialog {
                 sportsList.addElement(s);
             }
             lbxSports.setModel(sportsList);
-
+            
             List<IContributionDTO> contributions = personCreation.loadContributions();
             for (IContributionDTO cont : contributions) {
                 cobContribution.addItem(cont);
