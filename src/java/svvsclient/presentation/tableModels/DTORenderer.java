@@ -5,6 +5,7 @@
 package svvsclient.presentation.tableModels;
 
 import data.DTOs.IDTO;
+import java.awt.Color;
 import java.awt.Component;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
@@ -28,7 +29,11 @@ public class DTORenderer extends JLabel implements ListCellRenderer {
                 setText("");
             }else{
                 setText(((IDTO) value).getValues());
+                setOpaque(true);
+                setBackground(isSelected ? Color.blue : Color.white);
+                setForeground(isSelected ? Color.white : Color.black);
             }
+            
         } catch (RemoteException ex) {
             Logger.getLogger(DTORenderer.class.getName()).log(Level.SEVERE, null, ex);
         }

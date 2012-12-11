@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import svvsclient.presentation.tableModels.DTORenderer;
 import svvsclient.presentation.tableModels.MatchTableModel;
 import svvsclient.presentation.tableModels.SportsManTrainingTeamTableModel;
 
@@ -44,6 +45,9 @@ public class WettkampfDetailAnsicht extends javax.swing.JFrame {
     }
 
     private void initFields() throws RemoteException {
+        
+        lbxTeams.setCellRenderer(new DTORenderer());
+        
         DefaultListModel<ITeamDTO> listModel = new DefaultListModel<ITeamDTO>();
         for (ITeamDTO team : tournament.getTeams()) {
             listModel.addElement(team);

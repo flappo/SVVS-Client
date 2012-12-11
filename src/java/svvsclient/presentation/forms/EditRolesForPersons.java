@@ -11,6 +11,7 @@ import data.DTOs.IPersonDTO;
 import data.DTOs.IRoleDTO;
 import data.DTOs.IRoleRightsDTO;
 import data.DTOs.ISportDTO;
+import data.models.RoleRights;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class EditRolesForPersons extends javax.swing.JFrame {
      */
     public EditRolesForPersons(IPersonDTO person, IRoleController roles, IEditPersonRole personrole) throws RemoteException {
         initComponents();
+        
         lbRolle.setRenderer(new DTORenderer());
         lbAbteilung.setRenderer(new DTORenderer());
         lbSportart.setRenderer(new DTORenderer());
@@ -51,6 +53,9 @@ public class EditRolesForPersons extends javax.swing.JFrame {
             for (IDepartmentDTO dept : personrole.loadDepartments()) {
                 lbAbteilung.addItem(dept);
             }
+            List<IRoleRightsDTO> asdf = roles.loadRoleRights();
+            System.out.println(asdf.size());
+            
             for (IRoleRightsDTO role : roles.loadRoleRights()) {
                 lbRolle.addItem(role);
             }
@@ -62,6 +67,7 @@ public class EditRolesForPersons extends javax.swing.JFrame {
             model = new RoleTableModel(a);
             table.setModel(model);
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -238,7 +244,8 @@ public class EditRolesForPersons extends javax.swing.JFrame {
 
     private void lbAbteilungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbAbteilungActionPerformed
         try {
-            String currentRolename = lbRolle.getSelectedItem().toString();
+            IRoleRightsDTO currentRole = (IRoleRightsDTO) lbRolle.getSelectedItem();
+            String currentRolename = currentRole.getName();
             IDepartmentDTO dept = (IDepartmentDTO) lbAbteilung.getSelectedItem();
             lbSportart.setEnabled(true);
             lbSportart.setModel(new javax.swing.DefaultComboBoxModel());
