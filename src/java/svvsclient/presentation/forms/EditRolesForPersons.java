@@ -49,15 +49,10 @@ public class EditRolesForPersons extends javax.swing.JFrame {
         this.roles = roles;
 
         try {
-
-            List<IRoleRightsDTO> asdf = roles.loadRoleRights();
-            System.out.println(asdf.size());
-
             for (IRoleRightsDTO role : roles.loadRoleRights()) {
                 lbRolle.addItem(role);
             }
 
-            List<IDepartmentDTO> depts = personrole.loadDepartments();
             for (IDepartmentDTO dept : personrole.loadDepartments()) {
                 lbAbteilung.addItem(dept);
             }
@@ -208,8 +203,15 @@ public class EditRolesForPersons extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbRolleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbRolleActionPerformed
-        String currentRolename = lbRolle.getSelectedItem().toString();
+        
         IRoleRightsDTO dto = (IRoleRightsDTO) lbRolle.getSelectedItem();
+        String currentRolename = null;
+        try {
+            currentRolename = dto.getName();
+        } catch (RemoteException ex) {
+            Logger.getLogger(EditRolesForPersons.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         if (currentRolename.equals("Trainer") || currentRolename.equals("Sportler") || currentRolename.equals("Manager")) {
             lbAbteilung.setEnabled(true);
             lbSportart.setEnabled(false);
