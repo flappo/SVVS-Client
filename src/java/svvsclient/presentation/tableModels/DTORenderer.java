@@ -25,18 +25,20 @@ public class DTORenderer extends JLabel implements ListCellRenderer {
         try {
             if (value instanceof String) {
                 setText((String) value);
-            } else if(value == null){
+            } else if (value == null) {
                 setText("");
-            }else{
+            } else {
                 setText(((IDTO) value).getValues());
-                setOpaque(true);
-                setBackground(isSelected ? Color.blue : Color.white);
-                setForeground(isSelected ? Color.white : Color.black);
             }
-            
+
+            setOpaque(true);
+            setBackground(isSelected ? Color.pink : Color.white);
+            setForeground(isSelected ? Color.black : Color.black);
+
         } catch (RemoteException ex) {
             Logger.getLogger(DTORenderer.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this;
     }
+    
 }

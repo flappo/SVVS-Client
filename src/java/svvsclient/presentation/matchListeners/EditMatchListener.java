@@ -37,7 +37,7 @@ public class EditMatchListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (table.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Bitte wÃ¤hlen Sie erst eine Person aus, die sie bearbeiten mÃ¶chten.");
+            JOptionPane.showMessageDialog(null, "Bitte wählen Sie erst eine Person aus, die sie bearbeiten möchten.");
         } else {
             try {
                 int index = table.convertRowIndexToModel(table.getSelectedRow());

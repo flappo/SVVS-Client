@@ -353,7 +353,7 @@ public class CreatePersonDialog extends javax.swing.JDialog {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         if (JOptionPane.showConfirmDialog(null,
-                "Wollen sie wirklich abbrechen? Alle eingegebenen Daten gehen fÃ¼r immer verloren", "",
+                "Wollen sie wirklich abbrechen? Alle eingegebenen Daten gehen für immer verloren", "",
                 JOptionPane.YES_NO_OPTION)
                 == JOptionPane.YES_OPTION) {
             this.dispose();

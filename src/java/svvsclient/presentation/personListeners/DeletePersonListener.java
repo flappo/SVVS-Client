@@ -15,8 +15,8 @@ import javax.swing.JTable;
 import svvsclient.presentation.tableModels.PersonTableModel;
 
 /**
- * DeletePersonListener benÃ¶tigt die JTable damit er den aktuellen Datensatz
- * lÃ¶schen kann!
+ * DeletePersonListener benötigt die JTable damit er den aktuellen Datensatz
+ * löschen kann!
  *
  * @author Kno
  */
@@ -35,7 +35,7 @@ public class DeletePersonListener implements ActionListener {
 
         if (_table.getSelectedRow() != -1) {
             if (JOptionPane.showConfirmDialog(null,
-                    "Wollen sie die Person wirklich lÃ¶schen?", "",
+                    "Wollen sie die Person wirklich löschen?", "",
                     JOptionPane.YES_NO_OPTION)
                     == JOptionPane.YES_OPTION) {
                 //LÃ–SCHEN
@@ -48,13 +48,13 @@ public class DeletePersonListener implements ActionListener {
                 //controller.loadPersonDeleteController().removePerson(person);
                 controller.getPersonDelete().removePerson(person);
                 } catch (RemoteException ex) {
-                    System.out.println("LÃ¶schen fehlgeschlagen");
+                    System.out.println("Löschen fehlgeschlagen");
                 }
             } else {
                 //will doch nicht lÃ¶schen!
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Bitte wÃ¤hlen Sie erst eine Person aus, die sie lÃ¶schen mÃ¶chten.");
+            JOptionPane.showMessageDialog(null, "Bitte wählen Sie erst eine Person aus, die sie löschen möchten.");
         }
     }
 }

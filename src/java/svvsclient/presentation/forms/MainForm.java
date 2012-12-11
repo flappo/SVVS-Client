@@ -674,6 +674,7 @@ public class MainForm extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event__sportartActionPerformed
     
@@ -729,7 +730,7 @@ public class MainForm extends javax.swing.JFrame {
         
         _person.setRenderer(new DTORenderer());
         _sportart.setRenderer(new DTORenderer());
-//        _team.setRenderer(new DTORenderer());
+        _team.setRenderer(new DTORenderer());
         
         for (ISportDTO sports : _cFactory1.getPersonController().loadSports()/*controllerFactory.loadPersonController().loadSports()*/) {
             _sportart.addItem(sports);

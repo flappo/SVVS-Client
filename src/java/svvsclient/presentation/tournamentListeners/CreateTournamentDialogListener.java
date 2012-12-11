@@ -69,7 +69,7 @@ public class CreateTournamentDialogListener implements ActionListener {
         try {
             new BigDecimal(dialog.getFee());
         } catch (Exception ex) {
-            error += "GebÃ¼hr + \n";
+            error += "Gebühr + \n";
         }
         if (dialog.getSports().isEmpty()) {
             error += "Sportart \n";

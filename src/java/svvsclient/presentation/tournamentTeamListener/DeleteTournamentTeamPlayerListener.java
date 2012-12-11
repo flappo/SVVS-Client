@@ -38,7 +38,7 @@ public class DeleteTournamentTeamPlayerListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (table.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Bitte wÃ¤hlen Sie erst einen Spieler aus, den Sie lÃ¶schen mÃ¶chten.");
+            JOptionPane.showMessageDialog(null, "Bitte wählen Sie erst einen Spieler aus, den Sie löschen möchten.");
         } else {
             int index = table.convertRowIndexToModel(table.getSelectedRow());
             SportsManTableModel sportsmanModel = (SportsManTableModel) table.getModel();

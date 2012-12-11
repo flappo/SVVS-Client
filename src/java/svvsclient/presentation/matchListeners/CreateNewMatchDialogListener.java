@@ -37,7 +37,7 @@ public class CreateNewMatchDialogListener implements ActionListener {
 
         String error = isValide();
         if (!error.equals("")) {
-            JOptionPane.showMessageDialog(null, "Speichern nicht mÃ¶glich! \n"
+            JOptionPane.showMessageDialog(null, "Speichern nicht möglich! \n"
                     + "Bitte korrigieren sie folgende Punkte: \n \n" + error);
         } else {
 

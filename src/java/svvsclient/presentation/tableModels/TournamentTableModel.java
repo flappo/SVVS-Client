@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class TournamentTableModel extends DefaultTableModel {
 
     private List<ITournamentDTO> tournaments;
-    private String[] colNames = {"Name", "Ort", "Datum", "GebÃ¼hr"};
+    private String[] colNames = {"Name", "Ort", "Datum", "Gebühr"};
 
     public TournamentTableModel(List<ITournamentDTO> tournaments) {
         this.tournaments = tournaments;

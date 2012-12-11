@@ -33,7 +33,7 @@ public class EditPersonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (_table.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Bitte wÃ¤hlen Sie erst eine Person aus, die sie bearbeiten mÃ¶chten.");
+            JOptionPane.showMessageDialog(null, "Bitte wählen Sie erst eine Person aus, die sie bearbeiten möchten.");
         } else {
             int index = _table.convertRowIndexToModel(_table.getSelectedRow());
             PersonTableModel personModel = (PersonTableModel) _table.getModel();

@@ -40,7 +40,7 @@ public class SaveEditPersonListener implements ActionListener {
             //funktioniert die Speicherung?
             String error = isValide();
             if (!error.equals("")) {
-                JOptionPane.showMessageDialog(null, "Speichern nicht m√∂glich! \n"
+                JOptionPane.showMessageDialog(null, "Speichern nicht mˆglich! \n"
                         + "Bitte korrigieren sie folgende Punkte: \n \n" + error);
             } else {
                 try {
@@ -107,7 +107,7 @@ public class SaveEditPersonListener implements ActionListener {
             }
         }
         if (_dialog.getStreet().equals("")) {
-            errormessage += "Stra√üe \n";
+            errormessage += "Straﬂe \n";
         }
         if (_dialog.getPostCode().equals("")) {
             errormessage += "PLZ \n";

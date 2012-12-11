@@ -64,7 +64,7 @@ public class EditTournamentDialogListener implements ActionListener {
         try {
             new BigDecimal(dialog.getFee());
         } catch (Exception ex) {
-            error += "GebÃ¼hr + \n";
+            error += "Gebühr + \n";
         }
 
         return error;

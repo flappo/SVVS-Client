@@ -36,7 +36,7 @@ public class EditTournamentTeamListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (table.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Bitte wÃ¤hlen Sie erst ein Wettkampf Team aus, dass sie bearbeiten mÃ¶chten.");
+            JOptionPane.showMessageDialog(null, "Bitte wählen Sie erst ein Wettkampf Team aus, dass sie bearbeiten möchten.");
         } else {
             int index = table.convertRowIndexToModel(table.getSelectedRow());
             TournamentInviteTableModel ttModel = (TournamentInviteTableModel) table.getModel();
