@@ -43,7 +43,7 @@ import javax.ejb.EJB;
  *
  * @author phil
  */
-public class Main {
+public class Main { 
 
     @EJB(name = "_cFactory3")
     private static ControllerFactory3Remote _cFactory3;
